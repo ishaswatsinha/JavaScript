@@ -21,16 +21,20 @@ const symbols = [
 let password = "";
 let passwordLength = 10;
 let checkCount = 0;
-
 handleSlider();
+setIndicator("#ccc");
 
 function handleSlider() {
     inputSlider.value = passwordLength ;
     lengthNumber.textContent = inputSlider.value;
+    const min = inputSlider.min;
+    const max = inputSlider.max;
+    inputSlider.style.backgroundSize =((passwordLength - min)*100/(max-min)) +"% 100%";
 }
 
-function setIndicator() {
-    indicator.style.backgroundColor = "blue";
+function setIndicator(color) {
+    indicator.style.backgroundColor = color;
+    indicator.style.boxshadow = `0px 0px 12px 5px ${color}`;
 }
 
 function getRndInt(min, max) {
@@ -40,22 +44,22 @@ return Math.floor(Math.random() * (max - min) +min);
 function getRandomInt(min, max) {
     return getRndInt(0,9);
 }
-console.log(getRandomInt());
+
 
 function getLowerInt() {
     return String.fromCharCode(getRndInt(97,122));
 }
-console.log(getLowerInt());
+
 
 function getUpperInt() {
     return String.fromCharCode(getRndInt(65,91));
 }
-console.log(getUpperInt());
+
 
 function getSymbols(){
     return symbols[getRndInt(0, symbols.length)];
 }
-console.log(getSymbols()); 
+
 
 function getStrengthIndicator() {
     let hasUpper = false;
